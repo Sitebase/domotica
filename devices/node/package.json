@@ -1,0 +1,20 @@
+{
+  "name": "domotica-node",
+  "version": "0.0.1",
+  "description": "NodeJS daemon for subscribing and publising events",
+  "author": {
+    "name": "Wim Mostmans",
+    "email": "wim@sitebase.be"
+  },
+  "keywords": [
+    "domotica",
+    "home automation",
+    "libnmap"
+  ],
+  "dependencies": {
+    "forever": "*",
+    "vlc-api": "*"
+  },
+  "license": "MIT",
+  "engine": "node >= v0.10.*"
+}
