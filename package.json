@@ -17,7 +17,9 @@
     "socket.io": "*",
     "getmac": "*",
     "mqtt": "*",
-    "colors": "*"
+    "colors": "*",
+    "requirejs": ">=1.0.0",
+    "events": "*"
   },
   "scripts": {
     "start": "node run.js"
