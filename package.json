@@ -19,6 +19,9 @@
     "mqtt": "*",
     "colors": "*"
   },
+  "scripts": {
+    "start": "node run.js"
+  },
   "license": "MIT",
   "engine": "node >= v0.10.*"
 }
