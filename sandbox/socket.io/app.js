@@ -12,6 +12,7 @@ var server = http.createServer(function(req, res) {
 socketio.listen(server).on('connection', function (socket) {
     socket.on('message', function (msg) {
         console.log('Message Received: ', msg);
-        socket.broadcast.emit('message', msg);
+        console.log(msg.name);
+       // socket.broadcast.emit('message', msg);
     });
 });

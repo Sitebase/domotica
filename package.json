@@ -13,7 +13,11 @@
   ],
   "dependencies": {
     "forever": "*",
-    "vlc-api": "*"
+    "vlc-api": "*",
+    "socket.io": "*",
+    "getmac": "*",
+    "mqtt": "*",
+    "colors": "*"
   },
   "license": "MIT",
   "engine": "node >= v0.10.*"
