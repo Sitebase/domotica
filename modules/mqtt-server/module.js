@@ -17,6 +17,7 @@ define(['sandbox'],function(sandbox)
 	  });
 
 	  client.on('publish', function(packet) {
+	  	// @todo check if packet counts specific destination host and only send event to that host
 	    sandbox.log(client.id + ' ' + packet.payload, 'publish');
 	    for (var k in self.clients) {
 	      self.clients[k].publish({topic: packet.topic, payload: packet.payload});
@@ -59,10 +60,6 @@ define(['sandbox'],function(sandbox)
 		name: "mqtt-server",
 		init: function() {
  
-		},
-
-		bind: function() {
-			
 		},
 		log: function( message ) {
 			var app = "[" + this.name + "]";

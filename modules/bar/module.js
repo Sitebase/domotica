@@ -6,9 +6,5 @@ define(['sandbox'],function(sandbox)
 			sandbox.emit('connection', "hello");
 			sandbox.emit('connection', "hello2");
 		},
-
-		bind: function() {
-
-		}
 	};
 });

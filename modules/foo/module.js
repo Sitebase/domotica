@@ -3,7 +3,6 @@ define(['sandbox'],function(sandbox)
 	return {
 		name: "foo",
 		init: function() {
-			this.bind();
 		},
 
 		bind: function() {

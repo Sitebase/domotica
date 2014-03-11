@@ -6,10 +6,6 @@ define(['sandbox'],function(sandbox)
 	var module = {
 		name: "web",
 		init: function() {
-
-			// @todo move bind to app init
-			this.bind();
-			
 			var server = http.createServer(function(req, res) {
 			    res.writeHead(200, { 'Content-type': 'text/html'});
 			    res.end(fs.readFileSync( sandbox.getPath('/modules/web/public/index.html') ));
@@ -17,10 +13,6 @@ define(['sandbox'],function(sandbox)
 			    sandbox.log('Started HTTP web server at http://localhost:' + sandbox.getConfig().web.port);
 			});
 			 
-		},
-
-		bind: function() {
-			
 		},
 	};
 
