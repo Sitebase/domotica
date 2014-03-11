@@ -22,6 +22,7 @@ define(['sandbox'],function(sandbox)
 			'q-music': 	'http://mp3streaming.q-music.be/QBE_MP3_HI.m3u',
 			'metal': 	'http://yp.shoutcast.com/sbin/tunein-station.pls?id=318248',
 			'jazz': 	'http://yp.shoutcast.com/sbin/tunein-station.pls?id=190282',
+			'fire': 	'http://www.youtube.com/watch?v=BTZcyTy15Jk'
 		},
 		init: function() {
 			
@@ -50,6 +51,7 @@ define(['sandbox'],function(sandbox)
 					}
 					sandbox.log('Play ' + file);
 					vlc.status.play(file, {});
+					//vlc.status.fullscreen();
 					break;
 			}
 
