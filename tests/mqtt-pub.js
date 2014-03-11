@@ -35,7 +35,7 @@ requirejs.config({
 requirejs(['vlc'],function(vlc) {
   	console.log(vlc);
   	var e = new NetworkEvent();
-  	e.data = 'http://www.listenlive.eu/vrtstubru-high.m3u';
+  	e.data = 'jazz';
   	client.publish(vlc.event.OPEN, JSON.stringify(e));
   	client.end();
 });

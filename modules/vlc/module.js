@@ -15,6 +15,14 @@ define(['sandbox'],function(sandbox)
 			PAUSE: NAME + '.pause',
 			RESUME: NAME + '.resume'
 		},
+		channels: {
+			'stubru': 	'http://www.listenlive.eu/vrtstubru-high.m3u',
+			'klara': 	'http://www.listenlive.eu/vrtklaracontinuo-high.m3u',
+			'mnm': 		'http://www.listenlive.eu/vrtmnm-high.m3u',
+			'q-music': 	'http://mp3streaming.q-music.be/QBE_MP3_HI.m3u',
+			'metal': 	'http://yp.shoutcast.com/sbin/tunein-station.pls?id=318248',
+			'jazz': 	'http://yp.shoutcast.com/sbin/tunein-station.pls?id=190282',
+		},
 		init: function() {
 			
 		},
@@ -36,7 +44,12 @@ define(['sandbox'],function(sandbox)
 					vlc.status.resume();
 					break;
 				case module.event.OPEN:
-					vlc.status.play(event.getData(), {});
+					var file = event.getData();
+					if(module.channels.hasOwnProperty(file)) {
+						file = module.channels[file];
+					}
+					sandbox.log('Play ' + file);
+					vlc.status.play(file, {});
 					break;
 			}
 
