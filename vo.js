@@ -29,4 +29,10 @@ Publish object
 		label: 'temperature'
 		value: 200 // Value the sensor 
 	}
+
+	// Example 2
+	// vlc.open event
+	data: {
+		file: 'http://www.listenlive.eu/vrtstubru-high.m3u'
+	}
 }

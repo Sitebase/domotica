@@ -36,6 +36,9 @@
 				},
 				"mqtt-server": {
 					"enable": true
+				},
+				"vlc": {
+					"enable": true
 				}
 			}
 		},

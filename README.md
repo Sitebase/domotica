@@ -9,6 +9,12 @@ Project for doing home automation using Raspberry Pi and Arduino
 
 Use nodejs
 
+Run
+---
+Run node app with
+>NODE_PATH=`pwd`/lib node run.js
+To solve lib path problems
+
 What should be possible and ideas
 ---------------------------------
 * All client should be able to publish events (temperature changed, button clicked)

@@ -1,9 +1,9 @@
-var mqtt = require('mqtt');
+var mqtt = require('mqtt'),
+	NetworkEvent = require('network-event'),
 	colors = require('colors');
 
 define(['sandbox'],function(sandbox)
 {	
-
 	mqtt.createServer(function(client) {
 	  var self = this;
 
@@ -18,7 +18,14 @@ define(['sandbox'],function(sandbox)
 
 	  client.on('publish', function(packet) {
 	  	// @todo check if packet counts specific destination host and only send event to that host
-	    sandbox.log(client.id + ' ' + packet.payload, 'publish');
+	    sandbox.log(packet.topic + ' -> ' + client.id + ' ' + packet.payload, 'publish');
+
+	    // emit mqtt event in local node app
+	    // @todo auto decode if payload is json
+	    var e = new NetworkEvent( packet.payload );
+	    e.setTopic( packet.topic );
+	    sandbox.emit(packet.topic, e);
+
 	    for (var k in self.clients) {
 	      self.clients[k].publish({topic: packet.topic, payload: packet.payload});
 	    }
