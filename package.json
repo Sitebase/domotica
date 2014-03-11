@@ -20,7 +20,9 @@
     "colors": "*",
     "requirejs": ">=1.0.0",
     "events": "*",
-    "request": "*"
+    "request": "*",
+    "express": "*",
+    "jade": "*"
   },
   "scripts": {
     "start": "NODE_PATH=`pwd`/lib node run.js",

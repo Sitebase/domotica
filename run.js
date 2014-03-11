@@ -33,7 +33,8 @@ requirejs.config({
     	vlc: 'modules/vlc/module',
     	foo: 'modules/foo/module',
     	bar: 'modules/bar/module',
-    	web: 'modules/web/module',
+        web: 'modules/web/module',
+    	utorrent: 'modules/utorrent/module',
     	"mqtt-server": 'modules/mqtt-server/module'
     }
 });
