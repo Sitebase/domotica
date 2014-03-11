@@ -11,11 +11,13 @@ var util = require('util'),
     config = require('./config.json'),
     events = require('events');
 
+
 var e = new NetworkEvent();
 var helper = new Helper();
 var eventEmitter = new events.EventEmitter();
 
 console.log('hello');
+
 requirejs.config({
     //Use node's special variable __dirname to
     //get the directory containing this file.

@@ -1,16 +1,18 @@
 define(['sandbox'],function(sandbox)
 {	
+	var NAME = "vlc";
+
 	var module = {
+		name: NAME,
 		event: {
-			OPEN: this.name + '.open' // Start media file in vlc
+			OPEN: NAME + '.open' // Start media file in vlc
 		},
-		name: "vlc",
 		init: function() {
 			
 		},
 
 		bind: function() {
-			console.log('listen for vlc events');
+			console.log('listen for', module.event.OPEN);
 		},
 	};
 

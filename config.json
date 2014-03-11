@@ -5,21 +5,54 @@
 	"web": {
 		"port": "8888"
 	},
+
 	"modules": {
 		"foo": {
 			"enable": true
 		},
 		"bar": {
-			"enable": true
+			"enable": false
 		},
 		"web": {
-			"enable": true
+			"enable": false
 		},
 		"mqtt-server": {
-			"enable": true
+			"enable": false
 		},
 		"vlc": {
-			"enable": true
+			"enable": false
+		}
+	},
+
+	"nodes": {
+		"master": {
+			"controller": true,
+			"ip": "192.168.0.113",
+			"mac": "90:27:e4:e9:13:b4",
+			"room": "living",
+			"modules": {
+				"web": {
+					"enable": true
+				},
+				"mqtt-server": {
+					"enable": true
+				}
+			}
+		},
+		"mac-mini": {
+			"ip": "192.168.1.100",
+			"mac": "91:27:e4:e9:13:b4",
+			"room": "living",
+			"modules": {
+				"vlc": {
+					"enable": true
+				}
+			}
+		},
+		"mac-laptop-wim": {
+			"ip": "192.168.1.114",
+			"mac": "92:27:e4:e9:13:b4",
+			"room": "dynamic"
 		}
 	}
 }
