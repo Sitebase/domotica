@@ -19,7 +19,8 @@
     "mqtt": "*",
     "colors": "*",
     "requirejs": ">=1.0.0",
-    "events": "*"
+    "events": "*",
+    "request": "*"
   },
   "scripts": {
     "start": "NODE_PATH=`pwd`/lib node run.js",
