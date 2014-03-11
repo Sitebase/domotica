@@ -14,8 +14,6 @@ var util = require('util'),
 var helper = new Helper();
 var eventEmitter = new events.EventEmitter();
 
-console.log('hello');
-
 requirejs.config({
     //Use node's special variable __dirname to
     //get the directory containing this file.
