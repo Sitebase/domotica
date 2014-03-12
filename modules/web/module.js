@@ -3,6 +3,8 @@ var fs = require('fs'),
     socketio = require('socket.io');
 define(['sandbox'],function(sandbox)
 {	
+	var socket = null;
+
 	var module = {
 		name: "web",
 		init: function() {
@@ -22,7 +24,17 @@ define(['sandbox'],function(sandbox)
 
 			app.use(express.static(sandbox.getPath('/modules/web/public')));
 
-			app.listen(3000);
+			var server = app.listen(3000);
+			var io = socketio.listen(server).on('connection', function (socket) {
+				socket = socket;
+				console.log('connection ready', socket);
+				//socket.broadcast.emit('message', 'HELLO WORLD');
+				socket.emit('message', { hello: 'world' });
+
+				socket.on('message', function (msg) {
+			        console.log('Message Received: ', msg);
+			    });
+			});
 
 			sandbox.setServer( app );
 
@@ -40,6 +52,10 @@ define(['sandbox'],function(sandbox)
 		ready: function() {
 			//console.log('web ready', sandbox.getWebMenuItems());
 			sandbox.getServer().locals.items = sandbox.getWebMenuItems();
+
+			/*setTimeout(function() {
+				socket.broadcast.emit('message', msg);
+			},10000);*/
 		}
 	};
 
