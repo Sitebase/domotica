@@ -35,7 +35,9 @@ requirejs.config({
     	bar: 'modules/bar/module',
         web: 'modules/web/module',
     	utorrent: 'modules/utorrent/module',
-    	"mqtt-server": 'modules/mqtt-server/module'
+    	"mqtt-server": 'modules/mqtt-server/module',
+
+        movie: 'modules/utorrent/movie',
     }
 });
 

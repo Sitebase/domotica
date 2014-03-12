@@ -28,8 +28,12 @@ define(['sandbox'],function(sandbox)
 			var io = socketio.listen(server).on('connection', function (socket) {
 				socket = socket;
 				//socket.broadcast.emit('message', 'HELLO WORLD');
-				socket.on('message', function (msg) {
-			        console.log('Message Received: ', msg);
+				socket.on('message', function (json) {
+					// @todo This received event should be posted on network using mqtt to see which node want to handle it
+					var object = JSON.parse(json);
+			        sandbox.log('Message received from socketio: ' + object.trigger);
+			        //data = JSON.parse(json);
+			        sandbox.emit(object.trigger, object);
 			    });
 			    //socket.emit('message', 'from sandbox message');
 			    sandbox.setSocket(socket);

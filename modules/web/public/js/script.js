@@ -1,13 +1,20 @@
 $(function(){
+
+    window.events = new PubSub();
+    $('[data-trigger]').live('click', function(e) {
+        var trigger = $(this).data('trigger');
+        window.events.publish(trigger, [$(this).data()]);
+    });
+
+
+
     var iosocket = io.connect();
     var log = $('#log');
 
     iosocket.on('connect', function () {
     	console.error('connect');
         
-        iosocket.send('My custom message');
-
-        iosocket.on('log', function(message) {
+        iosocket.on('log', function(data) {
         	log.prepend('<div><span class="na">' + data.type + '</span> ' + data.message + '</div>');
         });
 
@@ -19,6 +26,7 @@ $(function(){
         	console.error('disconnect');
         });
     });
+    window.iosocket = iosocket;
 
     /*$('#outgoingChatMessage').keypress(function(event) {
         if(event.which == 13) {
