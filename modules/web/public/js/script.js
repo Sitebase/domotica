@@ -3,7 +3,11 @@ $(function(){
     window.events = new PubSub();
     $('[data-trigger]').live('click', function(e) {
         var trigger = $(this).data('trigger');
-        window.events.publish(trigger, [$(this).data()]);
+        var e = {
+            origin: $(this)
+        }
+        e.data = $(this).data();
+        window.events.publish(trigger, [e]);
     });
 
 

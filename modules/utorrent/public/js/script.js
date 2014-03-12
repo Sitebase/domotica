@@ -1,8 +1,8 @@
 $(function(){
 
-    events.subscribe('utorrent.download', function(data) {
-        console.error('sub download', data);
-        iosocket.send(JSON.stringify(data));
+    events.subscribe('utorrent.download', function(e) {
+        console.error('sub download', e);
+        iosocket.send(JSON.stringify(e.data));
     });
 
 });

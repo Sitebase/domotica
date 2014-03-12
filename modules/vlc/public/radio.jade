@@ -1,0 +1,15 @@
+extends ../../web/public/views/layout
+
+block append head
+	script(src="/vlc/js/script.js")
+
+block append content
+	.container
+		.col-md-12
+			h1 Radio channels
+			p Play some online stream and music radios.
+			each channel in channels
+				if (channel.url == current)
+					button.btn.btn-primary.btn-success.btn-lg.btn-block(type="button",data-trigger="vlc.open", data-url="#{channel.url}") #{channel.name}
+				else
+					button.btn.btn-primary.btn-lg.btn-block(type="button",data-trigger="vlc.open", data-url="#{channel.url}") #{channel.name}

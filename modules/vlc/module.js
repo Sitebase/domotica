@@ -1,4 +1,5 @@
-var NetworkClient = require('network-event'),
+var express = require('express'),
+ 	NetworkClient = require('network-event'),
 	MenuItem = require('menu-item'),
 	vlc = require('vlc-api')({
 		port: 8989
@@ -8,6 +9,7 @@ var NetworkClient = require('network-event'),
 define(['sandbox'],function(sandbox)
 {	
 	var NAME = "vlc";
+	var current = null;
 
 	var module = {
 		name: NAME,
@@ -16,29 +18,39 @@ define(['sandbox'],function(sandbox)
 			PAUSE: NAME + '.pause',
 			RESUME: NAME + '.resume'
 		},
-		channels: {
-			'stubru': 	'http://www.listenlive.eu/vrtstubru-high.m3u',
-			'klara': 	'http://www.listenlive.eu/vrtklaracontinuo-high.m3u',
-			'mnm': 		'http://www.listenlive.eu/vrtmnm-high.m3u',
-			'q-music': 	'http://mp3streaming.q-music.be/QBE_MP3_HI.m3u',
-			'metal': 	'http://yp.shoutcast.com/sbin/tunein-station.pls?id=318248',
-			'jazz': 	'http://yp.shoutcast.com/sbin/tunein-station.pls?id=190282',
-			'fire': 	'http://www.youtube.com/watch?v=BTZcyTy15Jk'
-		},
+		channels: [
+			{ name: 'stubru', url: 'http://www.listenlive.eu/vrtstubru-high.m3u', active: false },
+			{ name: 'klara', url: 'http://www.listenlive.eu/vrtklaracontinuo-high.m3u', active: false },
+			{ name: 'mnm', url: 	'http://www.listenlive.eu/vrtmnm-high.m3u', active: false },
+			{ name: 'q-music', url: 'http://mp3streaming.q-music.be/QBE_MP3_HI.m3u', active: false },
+			{ name: 'metal', url: 'http://yp.shoutcast.com/sbin/tunein-station.pls?id=318248', active: false },
+			{ name: 'jazz', url: 'http://yp.shoutcast.com/sbin/tunein-station.pls?id=190282', active: false },
+			{ name: 'fire', url: 'http://www.youtube.com/watch?v=BTZcyTy15Jk', active: false }
+		],
 		init: function() {
 			
 		},
 
 		bind: function() {
+			sandbox.on('app.modules.ready', this.ready);
 			sandbox.on(module.event.OPEN, this.handle);
 			sandbox.on(module.event.PAUSE, this.handle);
 			sandbox.on(module.event.RESUME, this.handle);
 		},
 
-		handle: function( event ) {
-			console.log('VLC handle event');
+		ready: function() {
+			console.log(module.channels);
+			
+			sandbox.getServer().get('/vlc/radio', function(req, res){
+				res.render('vlc/public/radio',{channels: module.channels, current: current});
+			});
+			sandbox.getServer().use('/vlc', express.static(sandbox.getPath('/modules/vlc/public')));
+		},
 
-			switch( event.getTopic() ) {
+		handle: function( event ) {
+
+			//switch( event.getTopic() ) {
+			switch( event.trigger ) {
 				case module.event.PAUSE:
 					vlc.status.pause();
 					break;
@@ -46,13 +58,10 @@ define(['sandbox'],function(sandbox)
 					vlc.status.resume();
 					break;
 				case module.event.OPEN:
-					var file = event.getData();
-					if(module.channels.hasOwnProperty(file)) {
-						file = module.channels[file];
-					}
-					sandbox.log('Play ' + file);
-					vlc.status.play(file, {});
+					sandbox.log('VLC play ' + event.url);
 					//vlc.status.fullscreen();
+					current = event.url;
+					vlc.status.play(event.url, {});
 					break;
 			}
 
@@ -60,7 +69,7 @@ define(['sandbox'],function(sandbox)
 		},
 
 		getWebMenuItem: function() {
-			return new MenuItem('Radio', 'vlc/radio.html');
+			return new MenuItem('Radio', '/vlc/radio');
 		}
 	};
 
