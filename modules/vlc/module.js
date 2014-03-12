@@ -1,4 +1,5 @@
-var NetworkClient = require('network-event')
+var NetworkClient = require('network-event'),
+	MenuItem = require('menu-item'),
 	vlc = require('vlc-api')({
 		port: 8989
 	});
@@ -57,6 +58,10 @@ define(['sandbox'],function(sandbox)
 
 
 		},
+
+		getWebMenuItem: function() {
+			return new MenuItem('Radio', 'vlc/radio.html');
+		}
 	};
 
 	return module;
