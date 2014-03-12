@@ -27,14 +27,15 @@ define(['sandbox'],function(sandbox)
 			var server = app.listen(3000);
 			var io = socketio.listen(server).on('connection', function (socket) {
 				socket = socket;
-				console.log('connection ready', socket);
 				//socket.broadcast.emit('message', 'HELLO WORLD');
-				socket.emit('message', { hello: 'world' });
-
 				socket.on('message', function (msg) {
 			        console.log('Message Received: ', msg);
 			    });
+			    //socket.emit('message', 'from sandbox message');
+			    sandbox.setSocket(socket);
+
 			});
+			io.set('log level', 1);
 
 			sandbox.setServer( app );
 
