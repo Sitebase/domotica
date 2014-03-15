@@ -25,7 +25,7 @@
     "jade": "*"
   },
   "scripts": {
-    "start": "NODE_PATH=`pwd`/lib node run.js",
+    "start": "NODE_PATH=`pwd`/lib node run.js > ./log/domotica.log",
     "test": "NODE_PATH=`pwd`/lib node tests/mqtt-pub.js"
   },
   "license": "MIT",
