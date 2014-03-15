@@ -29,3 +29,10 @@ What should be possible and ideas
 
 Todo
 ----
+
+
+Nice to know
+------------
+### Raspberry PI write to tty1 (hdmi)
+>sudo su
+>echo "hello world" > /dev/tty1
