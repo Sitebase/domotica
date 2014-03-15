@@ -25,7 +25,7 @@ define(['sandbox'],function(sandbox)
 			app.use(express.static(sandbox.getPath('/modules/web/public')));
 
 			var server = app.listen(3000);
-			var io = socketio.listen(server).on('connection', function (socket) {
+			var io = socketio.listen(server, {'log level': 0}).on('connection', function (socket) {
 				socket = socket;
 				//socket.broadcast.emit('message', 'HELLO WORLD');
 				socket.on('message', function (json) {
@@ -39,7 +39,7 @@ define(['sandbox'],function(sandbox)
 			    sandbox.setSocket(socket);
 
 			});
-			io.set('log level', 0);
+			//io.set('log level', 0);
 
 			sandbox.setServer( app );
 

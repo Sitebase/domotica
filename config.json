@@ -41,7 +41,7 @@
 		},
 		"master-thuis": {
 			"controller": true,
-			"ip": "192.168.1.105",
+			"ip": "192.168.1.102",
 			"mac": "90:27:e4:e9:13:b4",
 			"room": "living",
 			"modules": {
