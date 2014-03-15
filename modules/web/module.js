@@ -39,7 +39,7 @@ define(['sandbox'],function(sandbox)
 			    sandbox.setSocket(socket);
 
 			});
-			io.set('log level', 1);
+			io.set('log level', 0);
 
 			sandbox.setServer( app );
 
