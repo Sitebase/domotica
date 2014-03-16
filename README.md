@@ -1,5 +1,5 @@
-Domotica
-========
+Node Stack
+==========
 
 Project for doing home automation using Raspberry Pi and Arduino
 

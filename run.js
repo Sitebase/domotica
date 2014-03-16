@@ -28,7 +28,9 @@ requirejs.config({
     nodeRequire: require,
     paths: {
     	app: 'lib/app',
-    	sandbox: 'lib/sandbox',
+        sandbox: 'lib/sandbox',
+        node_stack_event: 'lib/node-stack-event',
+        node_stack_selector: 'lib/node-stack-selector',
 
     	vlc: 'modules/vlc/module',
     	foo: 'modules/foo/module',
@@ -49,8 +51,10 @@ eventEmitter.on('connection', callback);
 eventEmitter.emit('connection');
 
 //console.log(app);
-requirejs(['app'],function(app) {
+requirejs(['app','node_stack_event'],function(app, NodeStackEvent) {
   	app.start(__dirname);
+    var ev = new NodeStackEvent();
+    console.log(ev);
 });
 //app.register( foo );
 

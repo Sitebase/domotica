@@ -47,15 +47,6 @@
 			"modules": {
 				"web": {
 					"enable": true
-				},
-				"mqtt-server": {
-					"enable": true
-				},
-				"vlc": {
-					"enable": true
-				},
-				"utorrent": {
-					"enable": true
 				}
 
 			}
