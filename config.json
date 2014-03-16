@@ -49,6 +49,9 @@
 			"modules": {
 				"web": {
 					"enable": true
+				},
+				"webcam": {
+					"enable": true
 				}
 
 			}

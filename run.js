@@ -36,6 +36,7 @@ requirejs.config({
     	foo: 'modules/foo/module',
     	bar: 'modules/bar/module',
         web: 'modules/web/module',
+        webcam: 'modules/webcam/module',
     	utorrent: 'modules/utorrent/module',
     	"mqtt-server": 'modules/mqtt-server/module',
 
