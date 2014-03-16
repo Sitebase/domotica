@@ -21,10 +21,9 @@ define(['sandbox'],function(sandbox)
 			app.get('/testy', function(req, res){
 				res.render('web/public/views/layout', {'title': 'HELLO BLA'});
 			});
-			sandbox.log(sandbox.getNodeConfig());
 			app.use(express.static(sandbox.getPath('/modules/web/public')));
-			var server = app.listen( sandbox.getConfig().web.port, function() {
-				sandbox.log('Started web server at localhost:' + sandbox.getConfig().web.port);
+			var server = app.listen( sandbox.getNodeConfig().modules.web.port, function() {
+				sandbox.log('Started web server at localhost:' + sandbox.getNodeConfig().modules.web.port);
 			});
 
 			var io = socketio.listen(server, {'log level': 0}).on('connection', function (socket) {
@@ -43,15 +42,7 @@ define(['sandbox'],function(sandbox)
 			});
 			//io.set('log level', 0);
 
-			sandbox.setServer( app );
-
-			/*var server = http.createServer(function(req, res) {
-			    res.writeHead(200, { 'Content-type': 'text/html'});
-			    res.end(fs.readFileSync( sandbox.getPath('/modules/web/public/index.html') ));
-			}).listen(sandbox.getConfig().web.port, function() {
-			    sandbox.log('Started HTTP web server at http://localhost:' + sandbox.getConfig().web.port);
-			});*/
-			 
+			sandbox.setServer( app );			 
 		},
 		bind: function() {
 			sandbox.on('app.modules.ready', this.ready);
