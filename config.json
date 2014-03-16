@@ -14,10 +14,12 @@
 			"enable": false
 		},
 		"web": {
-			"enable": false
+			"enable": false,
+			"port": 8888
 		},
 		"mqtt-server": {
-			"enable": false
+			"enable": false,
+			"port": 1883
 		},
 		"vlc": {
 			"enable": false

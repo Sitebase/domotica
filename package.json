@@ -22,7 +22,8 @@
     "events": "*",
     "request": "*",
     "express": "*",
-    "jade": "*"
+    "jade": "*",
+    "deepmerge": "*"
   },
   "scripts": {
     "start": "NODE_PATH=`pwd`/lib node run.js",

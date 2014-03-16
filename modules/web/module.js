@@ -21,10 +21,12 @@ define(['sandbox'],function(sandbox)
 			app.get('/testy', function(req, res){
 				res.render('web/public/views/layout', {'title': 'HELLO BLA'});
 			});
-
+			sandbox.log(sandbox.getNodeConfig());
 			app.use(express.static(sandbox.getPath('/modules/web/public')));
+			var server = app.listen( sandbox.getConfig().web.port, function() {
+				sandbox.log('Started web server at localhost:' + sandbox.getConfig().web.port);
+			});
 
-			var server = app.listen(3000);
 			var io = socketio.listen(server, {'log level': 0}).on('connection', function (socket) {
 				socket = socket;
 				//socket.broadcast.emit('message', 'HELLO WORLD');
