@@ -25,7 +25,7 @@ define(['sandbox'],function(sandbox)
 		},
 		download: function(data) {
 			sandbox.log('Start downloading: ' + data.url);
-			var command = 'transmission-remote --add "' + data.url + '" -w /home/pi';
+			var command = 'transmission-remote --add "' + data.url + '" -w /home/pi/media/movies';
 			console.log(command);
 			exec(command, puts);
 		},
