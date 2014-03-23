@@ -13,6 +13,9 @@
 		"bar": {
 			"enable": false
 		},
+		"utorrent": {
+			"enable": true
+		},
 		"web": {
 			"enable": false,
 			"port": 8888
@@ -37,13 +40,13 @@
 					"enable": true
 				},
 				"mqtt-server": {
-					"enable": true
+					"enable": false
 				}
 			}
 		},
 		"master-thuis": {
 			"controller": true,
-			"ip": "192.168.1.102",
+			"ip": "192.168.1.104",
 			"mac": "90:27:e4:e9:13:b4",
 			"room": "living",
 			"modules": {
@@ -51,7 +54,7 @@
 					"enable": true
 				},
 				"mqtt-server": {
-					"enable": true
+					"enable": false
 				}
 
 			}

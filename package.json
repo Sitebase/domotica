@@ -23,7 +23,10 @@
     "request": "*",
     "express": "*",
     "jade": "*",
-    "deepmerge": "*"
+    "deepmerge": "*",
+    "camelot": "*",
+    "xml2js": "*",
+    "request": "*"
   },
   "scripts": {
     "start": "NODE_PATH=`pwd`/lib node run.js",

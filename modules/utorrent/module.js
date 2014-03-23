@@ -1,5 +1,11 @@
 var express = require('express'),
-	MenuItem = require('menu-item');
+	MenuItem = require('menu-item'),
+	request = require('request'),
+	parseString = require('xml2js').parseString;
+	sys = require('sys'),
+	exec = require('child_process').exec;
+
+function puts(error, stdout, stderr) { sys.puts(stdout) }
 
 define(['sandbox'],function(sandbox)
 {	
@@ -19,15 +25,34 @@ define(['sandbox'],function(sandbox)
 		},
 		download: function(data) {
 			sandbox.log('Start downloading: ' + data.url);
+			var command = 'transmission-remote --add "' + data.url + '" -w /home/pi';
+			console.log(command);
+			exec(command, puts);
 		},
 		ready: function() {
 			console.log('ALL IS READY', sandbox.getServer());
 
-			var movie1 = new Movie('12 Monkeys', 'magnet:?xt=urn:btih:AD59BF76BE0E7A3DECE6A134DE2954B293275338&dn=Walk+the+Line+%5B2005%5D+ExtCut+BRRip+XviD+-+CODY');
-			var movie2 = new Movie('Titanic', 'magnet:?xt=urn:btih:EDFCC958350D1B4D7D53A6860FE72A2A9DDCCA4A&dn=Cavaleiro.Das.Trevas.BDRip.Xvid.Dual.Audio.SenhoreSTorrenT');
+			//http://rss.thepiratebay.se/201
+
+			var movies = [];
+			request.get('http://rss.thepiratebay.se/201', function (error, response, body) {
+			    if (!error && response.statusCode == 200) {
+			        var csv = body;
+			        parseString(csv, function (err, result) {
+						//console.dir(result.rss.channel[0].item);
+						var items = result.rss.channel[0].item;
+						for(idx in items) {
+							//console.dir(items[idx]);
+							var item = items[idx];
+							var movie = new Movie(item.title[0], item.link[0]);
+							movies.push(movie);
+						}
+					});
+			    }
+			});
 
 			sandbox.getServer().get('/utorrent/list', function(req, res){
-				res.render('utorrent/public/index',{movies: [movie1, movie2]});
+				res.render('utorrent/public/index',{movies: movies});
 			});
 			sandbox.getServer().use('/utorrent', express.static(sandbox.getPath('/modules/utorrent/public')));
 
